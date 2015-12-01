@@ -11,7 +11,7 @@
             "src": {
                 "name": "Link to Source",
                 "type": "string",
-                "value": ""
+                "value": "http://lorempixel.com/800/400"
             }       
         }
     }, {
