@@ -65,7 +65,9 @@ Examples:
 -->
 
 <dom-module id="t-image">
-
+    
+  <style include="iron-flex-alignment"></style>
+  <style include="iron-positioning"></style>
   <style include="iron-flex">
 
     :host {
@@ -88,10 +90,27 @@ Examples:
       opacity: 0;
     }
 
+    #loadingOverlay{
+        background: var(--t-image-bg, #ccc);
+        color: var(--t-image-icon-color, #fff);
+        padding:10px;
+    }
+    #loadingIcon{
+        max-height: 100px;
+        max-width: 100px;
+        width: auto;
+        height: auto;
+    }
+
   </style>
 
   <template>
-
+     
+      <template is="dom-if" if="[[!loaded]]">
+        <div class="layout horizontal center center-justified fit" id="loadingOverlay">
+            <iron-icon id="loadingIcon" icon="[[loadingIcon]]"></iron-icon>
+        </div>
+      </template>
     <img id="img" role="none" hidden$="[[_computeImageVisibility(sizing)]]">
     <div id="placeholder" hidden$="[[_computePlaceholderVisibility(fade,loaded,preload)]]" class$="[[_computePlaceholderClassName(fade,loaded,preload)]]"></div>
     <content></content>
@@ -120,6 +139,17 @@ Examples:
         value: ''
       },
 
+    /**
+       * The icon to put when theres no source 
+       *
+       * @attribute src
+       * @type string
+       * @default 'perm-media'
+       */
+      loadingIcon: {
+          type: String,
+          value: 'perm-media'
+      },
       /**
        * When true, the image is prevented from loading and any placeholder is
        * shown.  This may be useful when a binding to the src property is known to
