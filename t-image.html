@@ -113,7 +113,8 @@ Examples:
       </template>
     <img id="img" role="none" hidden$="[[_computeImageVisibility(sizing)]]">
     <div id="placeholder" hidden$="[[_computePlaceholderVisibility(fade,loaded,preload)]]" class$="[[_computePlaceholderClassName(fade,loaded,preload)]]"></div>
-    <content></content>
+    <span hidden$="[[!title]]" id="title">[[title]]</span>
+    <content></content>    
 
   </template>
 
@@ -136,7 +137,8 @@ Examples:
       src: {
         observer: '_srcChanged',
         type: String,
-        value: ''
+        value: '',
+        reflectToAttribute:true,
       },
 
     /**
@@ -148,7 +150,8 @@ Examples:
        */
       loadingIcon: {
           type: String,
-          value: 'perm-media'
+          value: 'perm-media',
+          reflectToAttribute:true,
       },
       /**
        * When true, the image is prevented from loading and any placeholder is
@@ -190,7 +193,8 @@ Examples:
        */
       position: {
         type: String,
-        value: 'center'
+        value: 'center',
+        reflectToAttribute:true,
       },
 
       /**
@@ -290,6 +294,16 @@ Examples:
         type: Number,
         reflectToAttribute:true,
         value: null
+      },
+
+      /**
+       * Image caption
+       * 
+       */
+      title: {
+          type: String,
+          value: '',
+          reflectToAttribute:true,
       },
 
       _placeholderBackgroundUrl: {
