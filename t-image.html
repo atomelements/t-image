@@ -74,6 +74,7 @@ Examples:
       display: inline-block;
       overflow: hidden;
       position: relative;
+      font-family: var(--primary-font-family, 'Open sans');
     }
 
     :host([sizing]) #img {
@@ -101,7 +102,18 @@ Examples:
         width: auto;
         height: auto;
     }
-
+    .title-row{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 5px 60px;
+      background: rgba(0,0,0,0.34);
+      text-align: center;
+      color: #fff;
+      line-height: 1.5;
+      font-size: var(--carousel-title-size, 12px);
+    }
   </style>
 
   <template>
@@ -113,7 +125,7 @@ Examples:
       </template>
     <img id="img" role="none" hidden$="[[_computeImageVisibility(sizing)]]">
     <div id="placeholder" hidden$="[[_computePlaceholderVisibility(fade,loaded,preload)]]" class$="[[_computePlaceholderClassName(fade,loaded,preload)]]"></div>
-    <span hidden$="[[!title]]" id="title">[[title]]</span>
+    <div class="title-row" hidden$="[[!title]]" id="title">[[title]]</div>
     <content></content>    
 
   </template>
