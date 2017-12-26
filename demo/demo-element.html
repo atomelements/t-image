@@ -1,0 +1,17 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../t-image.html">
+<link rel="import" href="../../t-shared-components/theme.html">
+
+<dom-module id="demo-element">
+  <template>
+   <style></style>
+   <t-image style="width:100%; height:400px;" preload></t-image>
+  </template>
+
+  <script>
+    class DemoElement extends Polymer.Element {
+      static get is() { return 'demo-element' }
+    }
+    customElements.define(DemoElement.is, DemoElement);
+  </script>
+</dom-module>

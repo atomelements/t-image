@@ -65,7 +65,7 @@ Examples:
 -->
 
 <dom-module id="t-image">
-    
+<template>
   <style include="iron-flex-alignment"></style>
   <style include="iron-positioning"></style>
   <style include="iron-flex">
@@ -116,17 +116,18 @@ Examples:
     }
   </style>
 
-  <template>
+
      
       <template is="dom-if" if="[[!loaded]]">
         <div class="layout horizontal center center-justified fit" id="loadingOverlay">
             <iron-icon id="loadingIcon" icon="[[loadingIcon]]"></iron-icon>
         </div>
       </template>
+
     <img id="img" role="none" hidden$="[[_computeImageVisibility(sizing)]]">
     <div id="placeholder" hidden$="[[_computePlaceholderVisibility(fade,loaded,preload)]]" class$="[[_computePlaceholderClassName(fade,loaded,preload)]]"></div>
     <div class="title-row" hidden$="[[!title]]" id="title">[[title]]</div>
-    <content></content>    
+    <slot></slot>    
 
   </template>
 
@@ -404,7 +405,11 @@ Examples:
     },
 
     _transformChanged: function() {
+
+     
       var placeholderStyle = this.$.placeholder.style;
+
+      //var placeholderStyle = this.shadowRoot.querySelector('#placeholder').style;
 
       this.style.backgroundSize =
         placeholderStyle.backgroundSize = this.sizing;
@@ -416,6 +421,7 @@ Examples:
       this.style.backgroundRepeat =
         placeholderStyle.backgroundRepeat =
         this.sizing ? 'no-repeat' : null;
+
     },
 
     _loadBehaviorChanged: function() {
